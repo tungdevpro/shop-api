@@ -2,7 +2,6 @@ package business
 
 import (
 	"context"
-	"errors"
 
 	"github.com/tungdevpro/shop-api/modules/auth/entity"
 )
@@ -11,5 +10,7 @@ func (business *business) SignUp(ctx context.Context, dto *entity.SignUpDto) (*e
 	if err := dto.Validate(); err != nil {
 		return nil, err
 	}
-	return nil, errors.New("eroror")
+
+	result, err := business.repo.SignUp(ctx, dto)
+	return result, err
 }
