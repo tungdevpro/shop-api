@@ -22,12 +22,12 @@ func (api *api) SignUpHandler() fiber.Handler {
 		var dto entity.SignUpDto
 		if err := c.BodyParser(&dto); err != nil {
 
-			return c.JSON(common.NewErrorResp(nil, ValueError.ErrCannotCreateUser.Error(), ""))
+			return c.JSON(common.NewErrorResp(nil, ValueError.CannotCreateUser.Error(), ""))
 		}
 
 		_, err := api.biz.SignUp(c.Context(), &dto)
 		if err != nil {
-			return c.JSON(common.NewErrorResp(nil, ValueError.ErrCannotCreateUser.Error(), "Has error"))
+			return c.JSON(common.NewErrorResp(nil, ValueError.CannotCreateUser.Error(), "Has error"))
 		}
 
 		return c.JSON(common.NewSuccessResp(dto, nil, nil, ""))

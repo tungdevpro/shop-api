@@ -23,19 +23,19 @@ func (s *SignUpDto) Validate() error {
 
 	s.Password = strings.TrimSpace(s.Password)
 	if len(s.Password) < 6 {
-		return ValueError.ErrPasswordLength
+		return ValueError.PasswordLength
 	}
 
 	s.PasswordConfirm = strings.TrimSpace(s.PasswordConfirm)
 	if s.Password != s.PasswordConfirm {
-		return ValueError.ErrPasswordEqual
+		return ValueError.PasswordEqual
 	}
 
 	s.FullName = strings.TrimSpace(s.FullName)
 	if len(s.FullName) != 0 {
 		regex := regexp.MustCompile(`^[a-zA-Z\s]+$`)
 		if err := regex.MatchString(s.FullName); !err {
-			return ValueError.ErrFullNameInvalid
+			return ValueError.FullNameInvalid
 		}
 	}
 	return nil
